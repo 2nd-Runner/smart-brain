@@ -22,8 +22,9 @@ class Register extends React.Component {
         this.setState({password: event.target.value})
     }
 
+
     onSubmitSignIn = () => {
-        fetch('https://smart-brain-front.herokuapp.com/register', {
+        fetch('http://localhost:3000/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -34,12 +35,30 @@ class Register extends React.Component {
         })
             .then(response => response.json())
             .then(user => {
-                if (user.id) {
+                if (user) {
                     this.props.loadUser(user)
                     this.props.onRouteChange('home');
                 }
             })
     }
+    // onSubmitSignIn = () => {
+    //     fetch('https://smart-brain-ztm.herokuapp.com/register', {
+    //         method: 'post',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify({
+    //             email: this.state.email,
+    //             password: this.state.password,
+    //             name: this.state.name
+    //         })
+    //     })
+    //         .then(response => response.json())
+    //         .then(user => {
+    //             if (user.id) {
+    //                 this.props.loadUser(user)
+    //                 this.props.onRouteChange('home');
+    //             }
+    //         })
+    // }
 
     render() {
         return (

@@ -47,6 +47,7 @@ const requestOptions = {
 return requestOptions
 }
 
+
 const initialState = {
   input: '',
   imageUrl: '',
@@ -67,6 +68,7 @@ class App extends Component {
     super();
     this.state = initialState;
   }
+
 
   loadUser = (data) => {
     this.setState({user: {
@@ -105,7 +107,7 @@ class App extends Component {
     .then(response => response.json())
     .then(response => {
       if (response) {
-        fetch('https://smart-brain-front.herokuapp.com/image', {
+        fetch('http://localhost:3000/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -114,7 +116,7 @@ class App extends Component {
         })
           .then(response => response.json())
           .then(count => {
-            this.setState(Object.assign(this.state.user, { entries: count}))
+            this.setState(Object.assign(this.state.user, { entries: count }))
           })
 
       }
